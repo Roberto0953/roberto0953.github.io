@@ -3,10 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Il mio sito web</title>
+    <style>
+    body {
+        transition: background-color 0.3s ease;
+    }
+    
+    .theme-toggler {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    .night-mode {
+        background-color: black;
+        color: white;
+    }
+</style>
+
 </head>
 <body>
+    <button id="theme-toggler" class="theme-toggler">
+  <i class="fas fa-sun"></i>
+</button>
+
     <h1>Benvenuto al mio sito web!</h1>
     <p>Questo è un esempio di una semplice pagina web.</p>
+
+    <script>
+    const themeToggler = document.getElementById('theme-toggler');
+    const currentTheme = localStorage.getItem('theme');
+    
+    if (currentTheme) {
+        document.body.classList.add(currentTheme);
+    } else {
+        document.body.classList.add('night-mode');
+        localStorage.setItem('theme', 'night-mode');
+    }
+    
+    themeToggler.addEventListener('click', () => {
+        let theme = 'night-mode';
+        if (document.body.classList.contains('night-mode')) {
+            theme = 'light-mode';
+            themeToggler.innerHTML = '<i class="fas fa-moon"></i>';
+        } else {
+            theme = 'night-mode';
+            themeToggler.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        document.body.classList.toggle('night-mode');
+        localStorage.setItem('theme', theme);
+    });
+</script>
+
 </body>
 </html>
