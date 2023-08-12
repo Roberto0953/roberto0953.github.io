@@ -2,54 +2,12 @@
 <html lang="it">
 
 <head>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Il mio sito web</title>
-    <style>
-        body {
-            transition: background-color 0.3s ease;
-        }
-
-        .theme-toggler {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .night-mode {
-            background-color: black;
-            color: white;
-        }
-
-        .night-mode .theme-toggler {
-            color: white;
-        }
-
-        #welcome-text {
-            display: inline-block;
-            transform: translateY(0);
-            opacity: 1;
-            transition: opacity 0.4s, transform 0.4s;
-            text-align: center;
-        }
-
-        #welcome-text.fade-out {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-
-        #welcome-text.fade-in {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-    </style>
+   
 </head>
 
 <body class="night-mode">
@@ -61,71 +19,7 @@
     <h1><span id="welcome-text">Benvenuti nel mio sito web</span> <i id="language-icon" class="fas fa-flag"></i></h1>
     <p>Questo è un esempio di una semplice pagina web.</p>
 
-    <script>
-        const themeToggler = document.getElementById('theme-toggler');
-        const currentTheme = localStorage.getItem('theme');
-
-        if (currentTheme) {
-            document.body.className = currentTheme;
-        } else {
-            document.body.classList.add('night-mode');
-            localStorage.setItem('theme', 'night-mode');
-        }
-
-        themeToggler.addEventListener('click', () => {
-            let theme = 'night-mode';
-            if (document.body.classList.contains('night-mode')) {
-                theme = 'light-mode';
-                themeToggler.innerHTML = '<i class="fas fa-moon"></i>';
-            } else {
-                theme = 'night-mode';
-                themeToggler.innerHTML = '<i class="fas fa-sun"></i>';
-            }
-            document.body.className = theme;
-            localStorage.setItem('theme', theme);
-        });
-
-        const welcomeTextElement = document.getElementById('welcome-text');
-        const languageIconElement = document.getElementById('language-icon');
-
-        let languageIndex = 0;
-
-        const languages = [
-            {
-                text: "Benvenuti nel mio sito web",
-                icon: "fa-flag"
-            },
-            {
-                text: "Welcome to my website",
-                icon: "fa-flag-usa"
-            },
-            {
-                text: "Bienvenue sur mon site web",
-                icon: "fa-flag-fr"
-            }
-        ];
-
-        function updateLanguage() {
-            welcomeTextElement.classList.add('fade-out');
-
-            setTimeout(() => {
-                welcomeTextElement.textContent = languages[languageIndex].text;
-                languageIconElement.className = `fas ${languages[languageIndex].icon}`;
-
-                welcomeTextElement.classList.remove('fade-out');
-                welcomeTextElement.classList.add('fade-in');
-
-                setTimeout(() => {
-                    welcomeTextElement.classList.remove('fade-in');
-                }, 500);
-
-                languageIndex = (languageIndex + 1) % languages.length;
-            }, 500);
-        }
-
-        setInterval(updateLanguage, 3000);
-    </script>
-
+<script src="script.js"></script>
 </body>
 
 </html>
