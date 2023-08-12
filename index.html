@@ -1,126 +1,130 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>Il mio sito web</title>
     <style>
-    body {
-        transition: background-color 0.3s ease;
-    }
-    
-    .theme-toggler {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: color 0.3s ease;
-    }
-    
-    .night-mode {
-        background-color: black;
-        color: white;
-    }
+        body {
+            transition: background-color 0.3s ease;
+        }
 
-       
+        .theme-toggler {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
 
-.night-mode .theme-toggler {
-    color: white;
-}
+        .night-mode {
+            background-color: black;
+            color: white;
+        }
 
-        @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
+        .night-mode .theme-toggler {
+            color: white;
+        }
 
-#welcome-text, #language-icon {
-    animation: fadeIn 0.5s;
-}
+        #welcome-text {
+            display: inline-block;
+            transform: translateY(0);
+            opacity: 1;
+            transition: opacity 0.4s, transform 0.4s;
+        }
 
+        #welcome-text.fade-out {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
 
-</style>
+        #welcome-text.fade-in {
+            transform: translateY(0);
+            opacity: 1;
+        }
 
+    </style>
 </head>
-<body>
-    
+
+<body class="night-mode">
+
     <button id="theme-toggler" class="theme-toggler">
-  <i class="fas fa-sun"></i>
-</button>
+        <i class="fas fa-sun"></i>
+    </button>
 
     <h1><span id="welcome-text">Benvenuti nel mio sito web</span> <i id="language-icon" class="fas fa-flag"></i></h1>
     <p>Questo è un esempio di una semplice pagina web.</p>
 
     <script>
-    const themeToggler = document.getElementById('theme-toggler');
-    const currentTheme = localStorage.getItem('theme');
-    
-    if (currentTheme) {
-        document.body.classList.add(currentTheme);
-    } else {
-        document.body.classList.add('night-mode');
-        localStorage.setItem('theme', 'night-mode');
-    }
-    
-    themeToggler.addEventListener('click', () => {
-        let theme = 'night-mode';
-        if (document.body.classList.contains('night-mode')) {
-            theme = 'light-mode';
-            themeToggler.innerHTML = '<i class="fas fa-moon"></i>';
+        const themeToggler = document.getElementById('theme-toggler');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.body.className = currentTheme;
         } else {
-            theme = 'night-mode';
-            themeToggler.innerHTML = '<i class="fas fa-sun"></i>';
+            document.body.classList.add('night-mode');
+            localStorage.setItem('theme', 'night-mode');
         }
-        document.body.classList.toggle('night-mode');
-        localStorage.setItem('theme', theme);
-    });
 
-const welcomeTextElement = document.getElementById('welcome-text');
-const languageIconElement = document.getElementById('language-icon');
+        themeToggler.addEventListener('click', () => {
+            let theme = 'night-mode';
+            if (document.body.classList.contains('night-mode')) {
+                theme = 'light-mode';
+                themeToggler.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                theme = 'night-mode';
+                themeToggler.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            document.body.className = theme;
+            localStorage.setItem('theme', theme);
+        });
 
-let languageIndex = 0;
+        const welcomeTextElement = document.getElementById('welcome-text');
+        const languageIconElement = document.getElementById('language-icon');
 
-const languages = [
-    {
-        text: "Benvenuti nel mio sito web",
-        icon: "fa-flag" // puoi cambiare con un'icona specifica se lo desideri
-    },
-    {
-        text: "Welcome to my website",
-        icon: "fa-flag-usa" // Icona per l'inglese
-    },
-    {
-        text: "Bienvenue sur mon site web",
-        icon: "fa-flag-fr" // Icona per il francese
-    }
-];
+        let languageIndex = 0;
 
-function updateLanguage() {
-    welcomeTextElement.style.opacity = 0; // Nascondi prima di cambiare
-    languageIconElement.style.opacity = 0;
+        const languages = [
+            {
+                text: "Benvenuti nel mio sito web",
+                icon: "fa-flag"
+            },
+            {
+                text: "Welcome to my website",
+                icon: "fa-flag-usa"
+            },
+            {
+                text: "Bienvenue sur mon site web",
+                icon: "fa-flag-fr"
+            }
+        ];
 
-    setTimeout(() => {
-        welcomeTextElement.textContent = languages[languageIndex].text;
-        languageIconElement.className = `fas ${languages[languageIndex].icon}`;
-        welcomeTextElement.style.opacity = 1;
-        languageIconElement.style.opacity = 1;
-        
-        // Passa alla prossima lingua
-        languageIndex = (languageIndex + 1) % languages.length;
-    }, 500);
-}
+        function updateLanguage() {
+            welcomeTextElement.classList.add('fade-out');
 
-// Cambia la lingua ogni 3 secondi
-setInterval(updateLanguage, 3000);
+            setTimeout(() => {
+                welcomeTextElement.textContent = languages[languageIndex].text;
+                languageIconElement.className = `fas ${languages[languageIndex].icon}`;
 
-</script>
+                welcomeTextElement.classList.remove('fade-out');
+                welcomeTextElement.classList.add('fade-in');
+
+                setTimeout(() => {
+                    welcomeTextElement.classList.remove('fade-in');
+                }, 500);
+
+                languageIndex = (languageIndex + 1) % languages.length;
+            }, 500);
+        }
+
+        setInterval(updateLanguage, 3000);
+    </script>
 
 </body>
+
 </html>
