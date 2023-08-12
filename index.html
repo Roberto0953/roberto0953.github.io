@@ -32,15 +32,30 @@
     color: white;
 }
 
+        @keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#welcome-text, #language-icon {
+    animation: fadeIn 0.5s;
+}
+
+
 </style>
 
 </head>
 <body>
+    
     <button id="theme-toggler" class="theme-toggler">
   <i class="fas fa-sun"></i>
 </button>
 
-    <h1>Benvenuto al mio sito web!</h1>
+    <h1><span id="welcome-text">Benvenuti nel mio sito web</span> <i id="language-icon" class="fas fa-flag"></i></h1>
     <p>Questo è un esempio di una semplice pagina web.</p>
 
     <script>
@@ -66,6 +81,45 @@
         document.body.classList.toggle('night-mode');
         localStorage.setItem('theme', theme);
     });
+
+const welcomeTextElement = document.getElementById('welcome-text');
+const languageIconElement = document.getElementById('language-icon');
+
+let languageIndex = 0;
+
+const languages = [
+    {
+        text: "Benvenuti nel mio sito web",
+        icon: "fa-flag" // puoi cambiare con un'icona specifica se lo desideri
+    },
+    {
+        text: "Welcome to my website",
+        icon: "fa-flag-usa" // Icona per l'inglese
+    },
+    {
+        text: "Bienvenue sur mon site web",
+        icon: "fa-flag-fr" // Icona per il francese
+    }
+];
+
+function updateLanguage() {
+    welcomeTextElement.style.opacity = 0; // Nascondi prima di cambiare
+    languageIconElement.style.opacity = 0;
+
+    setTimeout(() => {
+        welcomeTextElement.textContent = languages[languageIndex].text;
+        languageIconElement.className = `fas ${languages[languageIndex].icon}`;
+        welcomeTextElement.style.opacity = 1;
+        languageIconElement.style.opacity = 1;
+        
+        // Passa alla prossima lingua
+        languageIndex = (languageIndex + 1) % languages.length;
+    }, 500);
+}
+
+// Cambia la lingua ogni 3 secondi
+setInterval(updateLanguage, 3000);
+
 </script>
 
 </body>
