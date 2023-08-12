@@ -1,0 +1,50 @@
+ <style>
+        body {
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggler {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .night-mode {
+            background-color: black;
+            color: white;
+        }
+
+        .night-mode .theme-toggler {
+            color: white;
+        }
+
+        #welcome-text {
+            display: inline-block;
+            transform: translateY(0);
+            opacity: 1;
+            transition: opacity 0.4s, transform 0.4s;
+            
+        }
+
+        #welcome-text.fade-out {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        #welcome-text.fade-in {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        h1 {
+    text-align: center;
+}
+
+        
+
+    </style>
