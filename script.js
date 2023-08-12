@@ -1,4 +1,4 @@
-<script>
+
         const themeToggler = document.getElementById('theme-toggler');
         const currentTheme = localStorage.getItem('theme');
 
@@ -61,4 +61,3 @@
         }
 
         setInterval(updateLanguage, 3000);
-    </script>
