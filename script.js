@@ -29,15 +29,15 @@ let languageIndex = 0;
 const languages = [
     {
         text: "Benvenuti nel mio sito web",
-        icon: "flag it"
+        icon: '<iconify-icon icon="twemoji:flag-italy"></iconify-icon>'
     },
     {
         text: "Welcome to my website",
-        icon: "flag us"
+        icon: '<iconify-icon icon="twemoji:flag-us"></iconify-icon>'
     },
     {
         text: "Bienvenue sur mon site web",
-        icon: "flag fr"
+        icon: '<iconify-icon icon="twemoji:flag-fr"></iconify-icon>'
     }
 ];
 
@@ -46,7 +46,7 @@ function updateLanguage() {
 
     setTimeout(() => {
         welcomeTextElement.textContent = languages[languageIndex].text;
-        languageIconElement.className = languages[languageIndex].icon;
+        languageIconElement.innerHTML = languages[languageIndex].icon;
 
         welcomeTextElement.classList.remove('fade-out');
         welcomeTextElement.classList.add('fade-in');
@@ -60,3 +60,4 @@ function updateLanguage() {
 }
 
 setInterval(updateLanguage, 3000);
+
