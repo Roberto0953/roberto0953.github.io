@@ -1,6 +1,6 @@
 body {
     transition: background-color 0.3s ease;
-    font-size: 16px; /* Dimensione base per rem */
+    font-size: 16px;
 }
 
 .theme-toggler {
@@ -15,7 +15,7 @@ body {
 }
 
 .night-mode {
-    background-color: #2C2C2C;
+    background-color: grey;
     color: white;
 }
 
@@ -25,10 +25,10 @@ body {
 
 #header-container {
     display: flex;
-    flex-direction: column; /* Cambia la direzione per visualizzare il titolo sotto il pulsante */
+    flex-direction: column;
     align-items: center;
     position: relative;
-    padding-top: 2rem; 
+    padding-top: 2rem;
 }
 
 #welcome-text {
@@ -50,16 +50,56 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 1.5rem; /* Riduci la dimensione del titolo */
+    font-size: 1.5rem;
 }
 
-/* Media query per dispositivi mobili */
 @media (max-width: 768px) {
     h1 {
-        font-size: 1.2rem; /* Riduci ulteriormente per schermi mobili */
+        font-size: 1.2rem;
     }
 
     .theme-toggler {
-        font-size: 1.2rem; /* Ridimensiona il pulsante */
+        font-size: 1.2rem;
     }
 }
+
+.flag {
+    width: 24px;
+    height: 16px;
+    display: inline-block;
+    background-color: white;
+    position: relative;
+    animation: wave 1s infinite alternate;
+}
+
+.flag.fr {
+    background-color: #0055A4;
+}
+
+.flag.fr::before, .flag.fr::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 33.33%;
+    height: 100%;
+}
+
+.flag.fr::before {
+    background-color: white;
+    left: 33.33%;
+}
+
+.flag.fr::after {
+    background-color: #EF4135;
+    right: 0;
+}
+
+@keyframes wave {
+    from {
+        transform: skewX(-20deg);
+    }
+    to {
+        transform: skewX(20deg);
+    }
+}
+
