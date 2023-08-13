@@ -1,11 +1,12 @@
 body {
     transition: background-color 0.3s ease;
+    font-size: 16px; /* Dimensione base per rem */
 }
 
 .theme-toggler {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 1rem;
+    right: 1rem;
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -24,10 +25,10 @@ body {
 
 #header-container {
     display: flex;
+    flex-direction: column; /* Cambia la direzione per visualizzare il titolo sotto il pulsante */
     align-items: center;
-    justify-content: center;
     position: relative;
-    padding-top: 20px; /* Aggiungi un padding superiore per prevenire sovrapposizioni */
+    padding-top: 2rem; 
 }
 
 #welcome-text {
@@ -49,16 +50,16 @@ body {
 
 h1 {
     text-align: center;
+    font-size: 1.5rem; /* Riduci la dimensione del titolo */
 }
 
 /* Media query per dispositivi mobili */
 @media (max-width: 768px) {
-    .theme-toggler {
-        top: 5px; /* Posiziona il pulsante un po' più in alto */
-        right: 5px; /* e un po' più a destra rispetto ai bordi */
+    h1 {
+        font-size: 1.2rem; /* Riduci ulteriormente per schermi mobili */
     }
 
-    #header-container {
-        padding-top: 50px; /* Aumenta il padding superiore per evitare sovrapposizioni */
+    .theme-toggler {
+        font-size: 1.2rem; /* Ridimensiona il pulsante */
     }
 }
