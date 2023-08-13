@@ -1,49 +1,64 @@
+body {
+    transition: background-color 0.3s ease;
+}
 
-        body {
-            transition: background-color 0.3s ease;
-        }
+.theme-toggler {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
 
-        .theme-toggler {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
+.night-mode {
+    background-color: black;
+    color: white;
+}
 
-        .night-mode {
-            background-color: black;
-            color: white;
-        }
+.night-mode .theme-toggler {
+    color: white;
+}
 
-        .night-mode .theme-toggler {
-            color: white;
-        }
+#header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-top: 20px; /* Aggiungi un padding superiore per prevenire sovrapposizioni */
+}
 
-        #welcome-text {
-            display: inline-block;
-            transform: translateY(0);
-            opacity: 1;
-            transition: opacity 0.4s, transform 0.4s;
-            
-        }
+#welcome-text {
+    display: inline-block;
+    transform: translateY(0);
+    opacity: 1;
+    transition: opacity 0.4s, transform 0.4s;
+}
 
-        #welcome-text.fade-out {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
+#welcome-text.fade-out {
+    transform: translateY(-100%);
+    opacity: 0;
+}
 
-        #welcome-text.fade-in {
-            transform: translateY(0);
-            opacity: 1;
-        }
+#welcome-text.fade-in {
+    transform: translateY(0);
+    opacity: 1;
+}
 
-        h1 {
+h1 {
     text-align: center;
 }
 
-        
+/* Media query per dispositivi mobili */
+@media (max-width: 768px) {
+    .theme-toggler {
+        top: 5px; /* Posiziona il pulsante un po' più in alto */
+        right: 5px; /* e un po' più a destra rispetto ai bordi */
+    }
 
+    #header-container {
+        padding-top: 50px; /* Aumenta il padding superiore per evitare sovrapposizioni */
+    }
+}
