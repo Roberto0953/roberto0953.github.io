@@ -1,26 +1,3 @@
-const themeToggler = document.getElementById('theme-toggler');
-const currentTheme = localStorage.getItem('theme');
-
-if (currentTheme) {
-    document.body.className = currentTheme;
-} else {
-    document.body.classList.add('night-mode');
-    localStorage.setItem('theme', 'night-mode');
-}
-
-themeToggler.addEventListener('click', () => {
-    let theme = 'night-mode';
-    if (document.body.classList.contains('night-mode')) {
-        theme = 'light-mode';
-        themeToggler.innerHTML = '<i class="fas fa-moon"></i>';
-    } else {
-        theme = 'night-mode';
-        themeToggler.innerHTML = '<i class="fas fa-sun"></i>';
-    }
-    document.body.className = theme;
-    localStorage.setItem('theme', theme);
-});
-
 const welcomeTextElement = document.getElementById('welcome-text');
 const languageIconElement = document.getElementById('language-icon');
 
@@ -29,15 +6,15 @@ let languageIndex = 0;
 const languages = [
     {
         text: "Benvenuti nel mio sito web",
-        icon: '<iconify-icon icon="twemoji:flag-italy"></iconify-icon>'
+        icon: "twemoji:flag-italy"
     },
     {
         text: "Welcome to my website",
-        icon: '<iconify-icon icon="twemoji:flag-us"></iconify-icon>'
+        icon: "twemoji:flag-united-states"
     },
     {
         text: "Bienvenue sur mon site web",
-        icon: '<iconify-icon icon="twemoji:flag-fr"></iconify-icon>'
+        icon: "twemoji:flag-france"
     }
 ];
 
@@ -46,7 +23,7 @@ function updateLanguage() {
 
     setTimeout(() => {
         welcomeTextElement.textContent = languages[languageIndex].text;
-        languageIconElement.innerHTML = languages[languageIndex].icon;
+        languageIconElement.setAttribute("data-icon", languages[languageIndex].icon);
 
         welcomeTextElement.classList.remove('fade-out');
         welcomeTextElement.classList.add('fade-in');
